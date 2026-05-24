@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import {prisma} from '../config/prisma.js';
+import { prisma } from '../config/prisma.js';
 
 export const registerUser = async (data) => {
 
@@ -10,6 +10,10 @@ export const registerUser = async (data) => {
             name: data.name,
             email: data.email,
             password: hashedPassword
+        },select: {
+            name: true,
+            email: true,
+            createdAt: true
         }
     });
 
