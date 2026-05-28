@@ -4,6 +4,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.route.js';
 import projectRoutes from './routes/project.route.js';
+import userRoutes from './routes/user.route.js';
 import { authenticateToken } from './middlewares/auth.middleware.js';
 
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', authenticateToken, userRoutes);
 app.use('/api/projects', authenticateToken, projectRoutes);
 
 

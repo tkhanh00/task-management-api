@@ -3,10 +3,16 @@ import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 import { verifyRefreshToken } from "../utils/jwt.js";
 
 export const registerController = async (req, res) => {
+
+    const data = {
+        name: req.body.name.trim().lowerCase(),
+        email: req.body.email.trim().toLowerCase(),
+        password: req.body.password
+    }
     
     try {
 
-        const user = await registerUser(req.body);
+        const user = await registerUser(data);
         res.status(201).json({ 
             success: true,
             message: 'User registered successfully',
